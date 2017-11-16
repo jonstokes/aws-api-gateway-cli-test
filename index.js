@@ -45,6 +45,7 @@ function authenticate(callback) {
       callback(result.getIdToken().getJwtToken());
     },
     onFailure: function(err) {
+      console.log("Fail!")
       console.log(err.message ? err.message : err);
     },
     newPasswordRequired: function(userAttributes, requiredAttributes) {
