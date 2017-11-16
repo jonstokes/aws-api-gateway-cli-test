@@ -3,10 +3,11 @@
 
 
 amazon-cognito-identity-js@^1.19.0:
-  version "1.23.0"
-  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-1.23.0.tgz#c98d155d0d4131e5cee9e8277dc58c11290d0fd1"
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-1.26.0.tgz#9c060a7b5a2ad9561060faf033c6092376407ea5"
   dependencies:
     aws-sdk "^2.6.0"
+    js-cookie "^2.1.4"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -27,8 +28,8 @@ aws-api-gateway-client@^0.2.7:
     url-template "^2.0.8"
 
 aws-sdk@^2.6.0, aws-sdk@^2.80.0:
-  version "2.149.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.149.0.tgz#76f53722a7780bdb3191e83f27c10108c6fe9813"
+  version "2.151.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.151.0.tgz#5e73d778b76514f36183b91400477778ab5e58d8"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
@@ -213,6 +214,10 @@ isexe@^2.0.0:
 jmespath@0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
+
+js-cookie@^2.1.4:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
 
 lcid@^1.0.0:
   version "1.0.0"

@@ -62,7 +62,7 @@ function authenticate(callback) {
     },
     customChallenge: function() {
       console.log("Custom challenge is not currently supported");
-    }
+    },
   });
 }
 
@@ -101,9 +101,13 @@ function makeRequest() {
     invokeUrl: argv.invokeUrl
   });
 
-  var params = JSON.parse(argv.params);
-  var additionalParams = JSON.parse(argv.additionalParams);
-  var body = JSON.parse(argv.body);
+  var params = {};
+  var additionalParams = {
+    queryParams: {
+      query: argv.query
+    }
+  };
+  var body = ""
 
   apigClient
     .invokeApi(params, argv.pathTemplate, argv.method, additionalParams, body)
