@@ -91,9 +91,27 @@ function getCredentials(userToken, callback) {
   });
 }
 
+function getUnauthorizedCredentials(callback) {
+  console.log("Getting temporary for unauthorized user credentials");
+
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: argv.identityPoolId,
+  });
+
+  AWS.config.update({ region: argv.cognitoRegion });
+  
+  AWS.config.credentials.get(function(err) {
+    if (err) {
+      console.log(err.message ? err.message : err);
+      return;
+    }
+
+    callback();
+  });
+}
+
 function makeRequest() {
   console.log("Making API request");
-
   var apigClient = apigClientFactory.newClient({
     accessKey: AWS.config.credentials.accessKeyId,
     secretKey: AWS.config.credentials.secretAccessKey,
@@ -132,6 +150,10 @@ function makeRequest() {
     });
 }
 
+console.log('#### Unauthorized request ####')
+getUnauthorizedCredentials(makeRequest)
+
 authenticate(function(token) {
+  console.log('#### Authorized request ####')  
   getCredentials(token, makeRequest);
 });
