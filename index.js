@@ -42,7 +42,10 @@ function authenticate(callback) {
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function(result) {
       console.log("Success!");
-      callback(result.getIdToken().getJwtToken(), result);
+      callback(
+        result.getIdToken().getJwtToken(), 
+        result.getAccessToken().getJwtToken()
+      );
     },
     onFailure: function(err) {
       console.log("Fail!")
@@ -86,8 +89,7 @@ function getCredentials(userToken, accessToken, callback) {
       console.log(err.message ? err.message : err);
       return;
     }
-    console.log(`Result: ${JSON.stringify(accessToken.getAccessToken().getJwtToken())}`)
-    callback(accessToken.getAccessToken().getJwtToken());
+    callback(accessToken);
   });
 }
 
