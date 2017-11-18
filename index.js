@@ -42,7 +42,7 @@ function authenticate(callback) {
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function(result) {
       console.log("Success!");
-      callback(result.getIdToken().getJwtToken());
+      callback(result.getIdToken().getJwtToken(), result);
     },
     onFailure: function(err) {
       console.log("Fail!")
@@ -67,7 +67,7 @@ function authenticate(callback) {
   });
 }
 
-function getCredentials(userToken, callback) {
+function getCredentials(userToken, accessToken, callback) {
   console.log("Getting temporary credentials");
 
   var logins = {};
@@ -86,8 +86,8 @@ function getCredentials(userToken, callback) {
       console.log(err.message ? err.message : err);
       return;
     }
-
-    callback(userToken);
+    console.log(`Result: ${JSON.stringify(accessToken.getAccessToken().getJwtToken())}`)
+    callback(accessToken.getAccessToken().getJwtToken());
   });
 }
 
@@ -157,7 +157,7 @@ function makeRequest(accessToken) {
 console.log('#### Unauthorized request ####')
 getUnauthorizedCredentials(makeRequest)
 
-authenticate(function(token) {
+authenticate(function(userToken, accessToken) {
   console.log('#### Authorized request ####')  
-  getCredentials(token, makeRequest);
+  getCredentials(userToken, accessToken, makeRequest);
 });
