@@ -87,7 +87,7 @@ function getCredentials(userToken, callback) {
       return;
     }
 
-    callback();
+    callback(userToken);
   });
 }
 
@@ -110,7 +110,7 @@ function getUnauthorizedCredentials(callback) {
   });
 }
 
-function makeRequest() {
+function makeRequest(accessToken) {
   console.log("Making API request");
   var apigClient = apigClientFactory.newClient({
     accessKey: AWS.config.credentials.accessKeyId,
@@ -124,9 +124,13 @@ function makeRequest() {
   var additionalParams = {
     queryParams: {
       query: argv.query
-    }
+    }, 
   };
   var body = ""
+
+  if (accessToken) {
+    additionalParams.headers = { accessToken }
+  }
 
   apigClient
     .invokeApi(params, argv.pathTemplate, argv.method, additionalParams, body)
